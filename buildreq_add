@@ -1,0 +1,9 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+SPIRV-Headers-dev
+SPIRV-Tools-dev
+Vulkan-Headers-dev
+Vulkan-Headers-data
+Vulkan-Loader-dev
+glslang-bin
+glslang-dev
