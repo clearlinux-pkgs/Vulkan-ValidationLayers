@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-ValidationLayers
 Version  : 1.1.101
-Release  : 3
+Release  : 4
 URL      : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.1.101.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.1.101.tar.gz
 Summary  : No detailed summary available
@@ -33,6 +33,7 @@ BuildRequires : pkgconfig(wayland-egl)
 BuildRequires : pkgconfig(wayland-server)
 BuildRequires : pkgconfig(x11-xcb)
 BuildRequires : python3
+Patch1: add-metal-platform.patch
 
 %description
 # Vulkan Ecosystem Components
@@ -66,13 +67,14 @@ license components for the Vulkan-ValidationLayers package.
 
 %prep
 %setup -q -n Vulkan-ValidationLayers-1.1.101
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551672069
+export SOURCE_DATE_EPOCH=1551725137
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -83,7 +85,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551672069
+export SOURCE_DATE_EPOCH=1551725137
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers/LICENSE.txt
