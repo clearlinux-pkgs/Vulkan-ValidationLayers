@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-ValidationLayers
 Version  : 1.1.101
-Release  : 2
+Release  : 3
 URL      : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.1.101.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.1.101.tar.gz
 Summary  : No detailed summary available
@@ -35,12 +35,8 @@ BuildRequires : pkgconfig(x11-xcb)
 BuildRequires : python3
 
 %description
-Build Validation Layers with Android CMake Plugin
-=================================================
-Gradle project in this directory builds layers into AAR.
-The project could be directly added into application's gradle projects.
-[Android Studio 3.0.0+](https://developer.android.com/studio/index.html)
-IS required: earlier versions only publish release libs by default.
+# Vulkan Ecosystem Components
+This project provides the Khronos official Vulkan validation layers for Windows, Linux, Android, and MacOS.
 
 %package data
 Summary: data components for the Vulkan-ValidationLayers package.
@@ -55,7 +51,6 @@ Summary: dev components for the Vulkan-ValidationLayers package.
 Group: Development
 Requires: Vulkan-ValidationLayers-data = %{version}-%{release}
 Provides: Vulkan-ValidationLayers-devel = %{version}-%{release}
-Requires: Vulkan-ValidationLayers = %{version}-%{release}
 
 %description dev
 dev components for the Vulkan-ValidationLayers package.
@@ -77,16 +72,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551306304
+export SOURCE_DATE_EPOCH=1551672069
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake .. -DBUILD_WSI_MIR_SUPPORT=OFF \
--DGLSLANG_INSTALL_DIR=/usr
-make  %{?_smp_mflags}
+-DGLSLANG_INSTALL_DIR=/usr \
+-DCMAKE_INSTALL_INCLUDEDIR=/usr/include/vulkan/
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551306304
+export SOURCE_DATE_EPOCH=1551672069
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers/LICENSE.txt
@@ -108,12 +105,29 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
-/usr/include/vk_format_utils.cpp
-/usr/include/vk_layer_config.cpp
-/usr/include/vk_layer_extension_utils.cpp
-/usr/include/vk_layer_utils.cpp
-/usr/include/vk_safe_struct.cpp
+/usr/include/vulkan/hash_util.h
+/usr/include/vulkan/hash_vk_types.h
+/usr/include/vulkan/vk_dispatch_table_helper.h
+/usr/include/vulkan/vk_enum_string_helper.h
+/usr/include/vulkan/vk_extension_helper.h
+/usr/include/vulkan/vk_format_utils.cpp
+/usr/include/vulkan/vk_format_utils.h
+/usr/include/vulkan/vk_layer_config.cpp
+/usr/include/vulkan/vk_layer_config.h
+/usr/include/vulkan/vk_layer_data.h
+/usr/include/vulkan/vk_layer_dispatch_table.h
+/usr/include/vulkan/vk_layer_extension_utils.cpp
+/usr/include/vulkan/vk_layer_extension_utils.h
+/usr/include/vulkan/vk_layer_logging.h
+/usr/include/vulkan/vk_layer_utils.cpp
+/usr/include/vulkan/vk_layer_utils.h
+/usr/include/vulkan/vk_loader_layer.h
+/usr/include/vulkan/vk_loader_platform.h
+/usr/include/vulkan/vk_object_types.h
+/usr/include/vulkan/vk_safe_struct.cpp
+/usr/include/vulkan/vk_safe_struct.h
+/usr/include/vulkan/vk_typemap_helper.h
+/usr/include/vulkan/vk_validation_error_messages.h
 /usr/lib64/libVkLayer_core_validation.so
 /usr/lib64/libVkLayer_object_lifetimes.so
 /usr/lib64/libVkLayer_stateless_validation.so
