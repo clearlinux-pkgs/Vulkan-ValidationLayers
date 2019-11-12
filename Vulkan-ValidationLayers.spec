@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-ValidationLayers
 Version  : 1.1.121
-Release  : 9
+Release  : 10
 URL      : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.1.121/Vulkan-ValidationLayers-1.1.121.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.1.121/Vulkan-ValidationLayers-1.1.121.tar.gz
 Summary  : No detailed summary available
@@ -67,13 +67,14 @@ license components for the Vulkan-ValidationLayers package.
 
 %prep
 %setup -q -n Vulkan-ValidationLayers-1.1.121
+cd %{_builddir}/Vulkan-ValidationLayers-1.1.121
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567785045
+export SOURCE_DATE_EPOCH=1573597899
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -86,8 +87,9 @@ export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake .. -DBUILD_WSI_MIR_SUPPORT=OFF \
 -DGLSLANG_INSTALL_DIR=/usr \
--DCMAKE_INSTALL_INCLUDEDIR=/usr/include/vulkan/
-make  %{?_smp_mflags} VERBOSE=1
+-DCMAKE_INSTALL_INCLUDEDIR=/usr/include/vulkan/ \
+-DCMAKE_CXX_FLAGS=-I/usr/include/glslang
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %check
@@ -98,10 +100,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test
 
 %install
-export SOURCE_DATE_EPOCH=1567785045
+export SOURCE_DATE_EPOCH=1573597899
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers
-cp LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers/LICENSE.txt
+cp %{_builddir}/Vulkan-ValidationLayers-1.1.121/LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-ValidationLayers/9bf8124f4495a48c4fd7104aebe2e957176b930b
 pushd clr-build
 %make_install
 popd
@@ -130,4 +132,4 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/Vulkan-ValidationLayers/LICENSE.txt
+/usr/share/package-licenses/Vulkan-ValidationLayers/9bf8124f4495a48c4fd7104aebe2e957176b930b
