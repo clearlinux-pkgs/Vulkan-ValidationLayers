@@ -1,4 +1,3 @@
 -DBUILD_WSI_MIR_SUPPORT=OFF
 -DGLSLANG_INSTALL_DIR=/usr
 -DCMAKE_INSTALL_INCLUDEDIR=/usr/include/vulkan/
--DCMAKE_CXX_FLAGS=-I/usr/include/glslang
