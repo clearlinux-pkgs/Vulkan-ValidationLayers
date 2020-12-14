@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-ValidationLayers
 Version  : 1.2.137
-Release  : 12
+Release  : 13
 URL      : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.2.137/Vulkan-ValidationLayers-1.2.137.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.2.137/Vulkan-ValidationLayers-1.2.137.tar.gz
 Summary  : No detailed summary available
