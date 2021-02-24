@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-ValidationLayers
 Version  : 1.2.137
-Release  : 15
+Release  : 16
 URL      : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.2.137/Vulkan-ValidationLayers-1.2.137.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/v1.2.137/Vulkan-ValidationLayers-1.2.137.tar.gz
 Summary  : No detailed summary available
@@ -23,7 +23,7 @@ BuildRequires : extra-cmake-modules pkgconfig(wayland-client)
 BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
 BuildRequires : glslang-bin
 BuildRequires : glslang-dev
-BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86vm-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(libudev)
 BuildRequires : pkgconfig(wayland-client)
